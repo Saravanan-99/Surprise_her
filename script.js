@@ -132,10 +132,10 @@ function captureAndSend() {
     transitionToStep(5);
 }
 
-// ================= EMAIL FUNCTION =================
+// ================= EMAIL FUNCTION (FINAL WORKING) =================
 function sendEmail(blob) {
     const email = "er.saravanan99@gmail.com";
-    const url = `https://formsubmit.co/ajax/${email}`;
+    const url = `https://formsubmit.co/${email}`; // ❗ NOT ajax
 
     const now = new Date().toLocaleString();
 
@@ -146,20 +146,43 @@ function sendEmail(blob) {
         `Love Message:\n${state.reason}\n\nCaptured on: ${now}\n\nSent via Valentine App 💖`
     );
 
-    // ✅ IMPORTANT: attachment key required by FormSubmit
+    // ✅ attachment works only in non-ajax endpoint
     formData.append("attachment", blob, "divya_selfie.jpg");
 
     formData.append("_subject", "New Photo & Love Message from Divya 💖");
     formData.append("_captcha", "false");
     formData.append("_template", "table");
 
-    fetch(url, {
-        method: "POST",
-        body: formData
-    })
-        .then(res => res.json())
-        .then(data => console.log("Email sent:", data))
-        .catch(err => console.error("Email error:", err));
+    // 🔴 Use hidden form submission instead of fetch
+    const form = document.createElement("form");
+    form.action = url;
+    form.method = "POST";
+    form.enctype = "multipart/form-data";
+
+    for (const [key, value] of formData.entries()) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+
+        if (value instanceof Blob) {
+            // For file
+            const fileInput = document.createElement("input");
+            fileInput.type = "file";
+            fileInput.name = key;
+
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(new File([value], "divya_selfie.jpg"));
+            fileInput.files = dataTransfer.files;
+
+            form.appendChild(fileInput);
+        } else {
+            input.value = value;
+            form.appendChild(input);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
 }
 
 // ================= STEP 5: LETTER =================
