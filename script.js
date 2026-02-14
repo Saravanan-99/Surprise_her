@@ -136,11 +136,6 @@ function captureAndSend() {
 
     canvas.toBlob(blob => {
         sendEmail(blob);
-
-        // Use the captured photo as background for the letter page
-        const imageUrl = URL.createObjectURL(blob);
-        document.getElementById('final-bg-photo').style.backgroundImage = `url(${imageUrl})`;
-
     }, 'image/jpeg', 0.9);
 
     // stop camera
