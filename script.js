@@ -73,6 +73,18 @@ function transitionToStep(step) {
     document.getElementById(`step-${step}`).classList.remove('hidden');
     document.getElementById(`step-${step}`).classList.add('active');
 
+    if (step === 2) {
+        audio.song.volume = 1.0;
+        audio.song.play().catch(() => {
+            console.log("Autoplay blocked, waiting for interaction");
+            const playOnTouch = () => {
+                audio.song.play();
+                document.removeEventListener('click', playOnTouch);
+            };
+            document.addEventListener('click', playOnTouch);
+        });
+    }
+
     if (step === 4) startCamera();
     if (step === 5) showFinalLetter();
 }
@@ -124,6 +136,11 @@ function captureAndSend() {
 
     canvas.toBlob(blob => {
         sendEmail(blob);
+
+        // Use the captured photo as background for the letter page
+        const imageUrl = URL.createObjectURL(blob);
+        document.getElementById('final-bg-photo').style.backgroundImage = `url(${imageUrl})`;
+
     }, 'image/jpeg', 0.9);
 
     // stop camera
