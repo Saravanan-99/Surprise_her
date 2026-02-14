@@ -1,0 +1,205 @@
+:root {
+    --primary-color: #ff4d6d;
+    --bg-gradient: linear-gradient(135deg, #fff0f3, #ffccd5);
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Start Overlay */
+.start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s;
+}
+
+.heart-btn {
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    background: var(--primary-color);
+    padding: 20px 40px;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(255, 77, 109, 0.6);
+    animation: pulse 1.5s infinite;
+}
+
+/* Layout */
+#app {
+    max-width: 420px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Steps */
+.step-container {
+    display: none;
+}
+
+.step-container.active {
+    display: block;
+}
+
+/* Titles */
+.main-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.subtitle {
+    margin-bottom: 30px;
+}
+
+/* Mic */
+.mic-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Input */
+textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 16px;
+}
+
+/* Camera */
+.camera-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#camera {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.camera-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Flash Effect */
+.flash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.flash-active {
+    animation: flashAnim 1.5s ease-out;
+}
+
+@keyframes flashAnim {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Vintage Letter */
+.letter-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vintage-letter {
+    background: #fdf6e3;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #e6d3a3;
+}
+
+.letter-header {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #7a5c2e;
+}
+
+.letter-body {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    margin-top: 15px;
+    white-space: pre-wrap;
+}
+
+.letter-footer {
+    margin-top: 20px;
+    font-family: 'Great Vibes', cursive;
+    text-align: right;
+}
+
+/* Floating Hearts */
+.bg-hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100vh);
+    }
+}

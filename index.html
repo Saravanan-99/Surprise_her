@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love Divya 💖</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- Audio Elements -->
+        <audio id="audio-song" loop preload="auto">
+            <source src="amaran.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Floating hearts background -->
+        <div class="bg-hearts"></div>
+
+        <!-- STEP 1 -->
+        <section id="step-1" class="step-container active">
+            <h1 class="main-title">Hi my love Divya 💖</h1>
+            <p class="subtitle">Please say <strong>"Love You"</strong> using the mic</p>
+
+            <div class="mic-wrapper">
+                <button id="mic-btn" class="mic-btn">🎤</button>
+                <div class="pulse-ring"></div>
+            </div>
+
+            <p id="transcript" class="transcript-text">...</p>
+            <p id="voice-error" class="error-msg hidden">Say it properly ❤️</p>
+            <p id="mic-unsupported" class="error-msg hidden">Use Chrome mobile</p>
+        </section>
+
+        <!-- STEP 2 -->
+        <section id="step-2" class="step-container hidden">
+            <h1 class="main-title">Why do you love Surya? 💌</h1>
+
+            <div class="input-card">
+                <textarea id="reason-input" placeholder="Tell from your heart (min 30 chars)..."></textarea>
+                <div class="char-count"><span id="char-current">0</span>/30+</div>
+                <button id="submit-reason-btn" class="submit-btn" disabled>Confirm Love 💖</button>
+            </div>
+
+            <p id="reason-error" class="error-msg hidden"></p>
+        </section>
+
+        <!-- STEP 3 -->
+        <section id="step-3" class="step-container hidden">
+            <h1 class="main-title">Happy Valentine's Day! 💖</h1>
+            <div class="final-card">
+                <p class="final-message-label">You promised me:</p>
+                <p id="display-reason" class="final-reason-text"></p>
+            </div>
+        </section>
+
+        <!-- STEP 4: CAMERA -->
+        <section id="step-4" class="step-container hidden">
+            <h1 class="main-title">See Yourself Through My Eyes 💖</h1>
+            <div class="camera-wrapper">
+                <video id="camera" autoplay playsinline></video>
+                <div class="camera-overlay">
+                    You are the most beautiful part of my world ❤️
+                </div>
+            </div>
+            <!-- Hidden Canvas for Capture -->
+            <canvas id="capture-canvas" style="display:none;"></canvas>
+        </section>
+
+        <!-- STEP 5: VINTAGE LETTER -->
+        <section id="step-5" class="step-container hidden">
+            <div class="letter-page">
+                <div class="vintage-letter">
+                    <div class="letter-header">My Dearest ❤️</div>
+
+                    <div id="final-letter-text" class="letter-body"></div>
+
+                    <div class="letter-footer">
+                        Forever Yours,<br>Surya
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
